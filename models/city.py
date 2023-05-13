@@ -1,14 +1,11 @@
 #!/usr/bin/python3
+
+'''File with the class City'''
+
 from models.base_model import BaseModel
-"""Class that
-represent
-the city"""
 
 
 class City(BaseModel):
-
-    """Initialize city class
-    instance
-    of basemodel class"""
+    '''City Class'''
     state_id = ""
     name = ""

@@ -1,12 +1,11 @@
 #!/usr/bin/python3
+
+
+'''File with the class Amenity'''
+
 from models.base_model import BaseModel
-"""Class that
-represent
-the amenity"""
 
 
 class Amenity(BaseModel):
-    """Initialize amenity class
-    instance
-    of basemodel class"""
-    name = ''
+    '''Amenity Class'''
+    name = ""

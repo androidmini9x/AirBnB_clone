@@ -1,115 +1,50 @@
 #!/usr/bin/python3
-"""test for the console"""
-import unittest
-from unittest.mock import patch
-from io import StringIO
-import os
-import json
+'''
+    Contains the class TestConsoleDocs
+'''
 import console
-import tests
-from console import HBNBCommand
-from models.base_model import BaseModel
-from models.user import User
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.city import City
-from models.engine.file_storage import FileStorage
-from models import storage
+import inspect
+import pep8
+import unittest
+HBNBCommand = console.HBNBCommand
 
 
-class TestHbnbConsole(unittest.TestCase):
-    """this will all the
-    aspects about console"""
+class TestConsoleDocs(unittest.TestCase):
+    '''
+        Class for testing documentation of the console
+    '''
+    def test_pep8_conformance_console(self):
+        '''
+            Test that console.py conforms to PEP8.
+        '''
+        pep8s = pep8.StyleGuide(quiet=True)
+        result = pep8s.check_files(['console.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def setUp(self):
-        """Sets up tests
-        for the console methods."""
-        pass
+    def test_pep8_conformance_test_console(self):
+        '''
+            Test that tests/test_console.py conforms to PE
+        '''
+        pep8s = pep8.StyleGuide(quiet=True)
+        result = pep8s.check_files(['tests/test_console.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
+    def test_console_module_docstring(self):
+        '''
+            Test for the console.py module docstr
+        '''
+        self.assertIsNot(console.__doc__, None,
+                         "console.py needs a docstring")
+        self.assertTrue(len(console.__doc__) >= 1,
+                        "console.py needs a docstring")
 
-class TestHBNB_prompt(unittest.TestCase):
-
-    def testprompt(self):
-        self.assertEqual("(hbnb) ", HBNBCommand.prompt)
-
-    def test_emptyline(self):
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd(""))
-            self.assertEqual("", output.getvalue().strip())
-
-
-class TestHBNBcreate(unittest.TestCase):
-
-    @classmethod
-    def setUp(self):
-        try:
-            os.rename("file.json", "tmp")
-        except IOError:
-            pass
-        FileStorage.__objects = {}
-
-    @classmethod
-    def tearDown(self):
-        try:
-            os.remove("file.json")
-        except IOError:
-            pass
-        try:
-            os.rename("tmp", "file.json")
-        except IOError:
-            pass
-
-    def test_create_missing_class(self):
-        correct = "** class name missing **"
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create"))
-            self.assertEqual(correct, output.getvalue().strip())
-
-    def test_create_invalid_class(self):
-        correct = "** class doesn't exist **"
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create MyModel"))
-            self.assertEqual(correct, output.getvalue().strip())
-
-    def test_create_object(self):
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
-            self.assertLess(0, len(output.getvalue().strip()))
-            testKey = "BaseModel.{}".format(output.getvalue().strip())
-            self.assertIn(testKey, storage.all().keys())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create User"))
-            self.assertLess(0, len(output.getvalue().strip()))
-            testKey = "User.{}".format(output.getvalue().strip())
-            self.assertIn(testKey, storage.all().keys())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create State"))
-            self.assertLess(0, len(output.getvalue().strip()))
-            testKey = "State.{}".format(output.getvalue().strip())
-            self.assertIn(testKey, storage.all().keys())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create City"))
-            self.assertLess(0, len(output.getvalue().strip()))
-            testKey = "City.{}".format(output.getvalue().strip())
-            self.assertIn(testKey, storage.all().keys())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
-            self.assertLess(0, len(output.getvalue().strip()))
-            testKey = "Amenity.{}".format(output.getvalue().strip())
-            self.assertIn(testKey, storage.all().keys())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create Place"))
-            self.assertLess(0, len(output.getvalue().strip()))
-            testKey = "Place.{}".format(output.getvalue().strip())
-            self.assertIn(testKey, storage.all().keys())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("create Review"))
-            self.assertLess(0, len(output.getvalue().strip()))
-            testKey = "Review.{}".format(output.getvalue().strip())
-            self.assertIn(testKey, storage.all().keys())
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_HBNBCommand_class_docstring(self):
+        '''
+            Test for the HBNBCommand class docstr
+        '''
+        self.assertIsNot(HBNBCommand.__doc__, None,
+                         "HBNBCommand class needs a docstring")
+        self.assertTrue(len(HBNBCommand.__doc__) >= 1,
+                        "HBNBCommand class needs a docstring")

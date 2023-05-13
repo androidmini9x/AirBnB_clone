@@ -1,14 +1,10 @@
 #!/usr/bin/python3
+
+'''File with the class State'''
+
 from models.base_model import BaseModel
-"""Class that
-represent
-the state"""
 
 
 class State(BaseModel):
-
-    """Initialize state class
-    instance
-    of basemodel class"""
-
+    '''State Class'''
     name = ""
