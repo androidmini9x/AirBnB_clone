@@ -2,7 +2,6 @@
 """
 Unittest for amenity module
 """
-import os
 import unittest
 from models.amenity import Amenity
 from models.base_model import BaseModel

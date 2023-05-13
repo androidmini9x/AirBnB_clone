@@ -5,7 +5,6 @@ Unittest for state module
 import os
 import unittest
 from models.state import State
-from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
 
