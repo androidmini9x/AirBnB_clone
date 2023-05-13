@@ -30,7 +30,11 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def emptyline(self):
-        """Type method emptyline"""
+        """
+        When an empty line is entered in response to the prompt,
+        it won't repeat the last nonempty command entered.
+
+        """
         pass
 
     def do_quit(self, line):
@@ -174,7 +178,14 @@ based on the class name and id.
         print(counter)
 
     def default(self, arg):
-        """Type method default"""
+        """
+        When the command prefix is not recognized, this method
+        looks for whether the command entered has the syntax:
+            "<class name>.<method name>" or not,
+        and links it to the corresponding method in case the
+        class exists and the method belongs to the class.
+
+        """
         m_dict = {
             "all": self.do_all,
             "show": self.do_show,
