@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 """Amenity Module
 
 This Module inherits from BaseModel class.
