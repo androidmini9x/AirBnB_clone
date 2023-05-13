@@ -13,7 +13,10 @@ from shlex import split
 import re
 import json
 
-"""Console to manage HBNB data"""
+"""Console Module
+This module controls all databases.
+Can create, modify and delete instances.
+"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -40,13 +43,11 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program
         """
-        print()
         return True
 
     def do_EOF(self, line):
         """Exit the shell
         """
-        print()
         return True
 
     def do_create(self, args):
