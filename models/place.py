@@ -1,8 +1,11 @@
 #!/usr/bin/python3
-"""Class that
-represent
-a Place"""
+# -*- coding: utf-8 -*-
+"""Place Module
 
+This Module inherits from BaseModel class.
+Place Module contains the attributes to be assigned
+to the Places created.
+"""
 
 from models.base_model import BaseModel
 
