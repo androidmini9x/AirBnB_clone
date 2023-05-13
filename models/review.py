@@ -11,6 +11,6 @@ class Review(BaseModel):
     instance
     of basemodel class"""
 
-    place_id = ''
-    user_id = ''
-    text = ''
+    place_id = ""
+    user_id = ""
+    text = ""
