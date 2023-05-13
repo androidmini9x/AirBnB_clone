@@ -13,10 +13,7 @@ from shlex import split
 import re
 import json
 
-"""Console to
-manage
-hbnb data
-"""
+"""Console to manage HBNB data"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -37,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_quit(self, line):
-        """Exits the shell"""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, line):
