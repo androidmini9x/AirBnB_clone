@@ -1,53 +1,36 @@
 #!/usr/bin/python3
-"""
-Unittest for review module
-"""
-import unittest
-from models.review import Review
+"""Test Review"""
+from models.amenity import Amenity
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+import pep8
+import unittest
 
 
-class Test_Review(unittest.TestCase):
-    """ Test for
-    Review Class """
+class Testreview(unittest.TestCase):
+    """
+    Unittests for the Review class.
+    """
+    def test_pep8_conformance_review(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/review.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    m = Review()
+    def test_class(self):
+        """
+        Tests if class is named correctly.
+        """
+        rev1 = Review()
+        self.assertEqual(rev1.__class__.__name__, "Review")
 
-    def setUp(self):
-        """set up the
-        test for testing Reviews"""
-        FileStorage._FileStorage__file_path = "test.json"
-        self.rev = Review()
-        self.rev.place_id = "666"
-        self.rev.user_id = "666"
-        self.rev.text = "666"
-        self.rev.save()
-
-    def test_atrr_type_review(self):
-        """test attribute type for Review"""
-        self.assertEqual(type(self.m.place_id), str)
-        self.assertEqual(type(self.m.user_id), str)
-        self.assertEqual(type(self.m.text), str)
-
-    def test_attribute_place_id(self):
-        """ Tests attr """
-        self.assertEqual(hasattr(self.m, "place_id"), True)
-        self.assertEqual(hasattr(self.m, "user_id"), True)
-        self.assertEqual(hasattr(self.m, "text"), True)
-
-    def test_subcls_Review(self):
-        """test   subclass  BaseModel"""
-        self.assertTrue(issubclass(self.rev.__class__, BaseModel), True)
-        self.assertIsInstance(self.rev, Review)
-
-    def test_docstring_Review(self):
-        """checking for docstrings"""
-        self.assertIsNotNone(Review.__doc__)
-
-    def testpublic(self):
-        self.assertEqual(str, type(Review().id))
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_father(self):
+        """
+        Tests if Class inherits from BaseModel.
+        """
+        rev1 = Review()
+        self.assertTrue(issubclass(rev1.__class__, BaseModel))
