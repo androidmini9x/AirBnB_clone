@@ -1,37 +1,59 @@
 #!/usr/bin/python3
-"""Test Amenity"""
+"""
+Unittest for amenity module
+"""
+import os
+import unittest
 from models.amenity import Amenity
 from models.base_model import BaseModel
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-import unittest
-import pep8
+from models.engine.file_storage import FileStorage
 
 
-class Testamenity(unittest.TestCase):
-    """
-    unit test for amenity class
-    """
+class Test_Amenity(unittest.TestCase):
+    """ Test for
+    Amenity Class """
 
-    def test_pep8_conformance_amenity(self):
-        """Test that we conform to PEP8."""
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/amenity.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
+    examplee = Amenity()
 
-    def test_class(self):
-        """
-        Tests if the class is named correctly.
-        """
-        amenity1 = Amenity()
-        self.assertEqual(amenity1.__class__.__name__, "Amenity")
+    def setUp(self):
+        """set up the
+        test for testing amenities"""
+        FileStorage._FileStorage__file_path = "test.json"
+        self.amenity = Amenity()
+        self.amenity.name = "remarkable"
+        self.amenity.save()
 
-    def test_father(self):
-        """
-        Tests if class inherits from BaseModel.
-        """
-        amenity1 = Amenity()
-        self.assertTrue(issubclass(amenity1.__class__, BaseModel))
+    def test_class_existance(self):
+        """tests if class exists"""
+        result = "<class 'models.amenity.Amenity'>"
+        self.assertEqual(str(type(self.examplee)), result)
+
+    def testpublic(self):
+        self.assertEqual(str, type(Amenity().id))
+
+    def test_instance_User(self):
+        """ Test subclasses of BaseModel """
+        self.assertIsInstance(self.examplee, Amenity)
+
+    def test_atrr_type_Amenity(self):
+        """test attribute type for Amenity"""
+        self.assertEqual(type(self.amenity.name), str)
+
+    def test_attribute_name(self):
+        """ Check name """
+        self.assertEqual(hasattr(self.examplee, "name"), True)
+
+    def test_types(self):
+        """ test types """
+        self.assertEqual(type(self.examplee.name), str)
+
+    def testHasAttributes(self):
+        """verify if attributes exist"""
+        self.assertTrue(hasattr(self.examplee, 'name'))
+        self.assertTrue(hasattr(self.amenity, 'id'))
+        self.assertTrue(hasattr(self.examplee, 'created_at'))
+        self.assertTrue(hasattr(self.amenity, 'updated_at'))
+
+
+if __name__ == "__main__":
+    unittest.main()
