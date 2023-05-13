@@ -1,6 +1,11 @@
 #!/usr/bin/python3
-import cmd
+"""Console Module
+This module controls all databases.
+Can create, modify and delete instances.
+"""
 
+
+import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -12,11 +17,6 @@ from models.state import State
 from shlex import split
 import re
 import json
-
-"""Console Module
-This module controls all databases.
-Can create, modify and delete instances.
-"""
 
 
 class HBNBCommand(cmd.Cmd):
