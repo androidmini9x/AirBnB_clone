@@ -40,12 +40,14 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, line):
-        """Exit the shell"""
+        """Exit the shell
+        """
         print()
         return True
 
     def do_create(self, args):
-        """Type method create"""
+        """Type method create
+        """
         if not args:
             print('** class name missing **')
         elif args not in HBNBCommand.__classes:
@@ -60,7 +62,9 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, line):
-        """Type method show"""
+        """Prints the string representation of an instance
+based on the class name and id.
+        """
         arg = line.split()
         obj_dict = storage.all()
         if len(arg) == 0:
@@ -75,7 +79,8 @@ class HBNBCommand(cmd.Cmd):
             print(obj_dict["{}.{}".format(arg[0], arg[1])])
 
     def do_destroy(self, line):
-        """Type method destroy"""
+        """Deletes the instance
+        """
         arg = line.split()
         obj_dict = storage.all()
         if len(arg) == 0:
@@ -91,7 +96,8 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, args):
-        """Type method all"""
+        """Prints all string representation of all instances
+        """
         yes = 0
         all_obj = [str(v) for v in storage.all().values()]
         if not args:
@@ -111,7 +117,8 @@ class HBNBCommand(cmd.Cmd):
             print('** class doesn\'t exist **')
 
     def do_update(self, args):
-        """Type method update"""
+        """Updates an instance
+        """
         args_ = args.split()
         if not args:
             print('** class name missing **')
@@ -157,7 +164,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_count(self, line):
-        """Type method count"""
+        """Count instance
+        """
         arg = line.split()
         counter = 0
         for obj in storage.all().values():
