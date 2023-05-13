@@ -26,6 +26,7 @@ class Place(BaseModel):
         amenity_ids (list): A list that contains all the Amenities in the Place
 
     """
+
     city_id = ''
     user_id = ''
     name = ''
